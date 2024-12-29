@@ -3,7 +3,7 @@
 A web application that allows users to execute a chain of 5 mathematical functions, with output (y) of each function serving as the input (x) for the next.
 
 Here is the deployment link for same:
-[Deployment Link](link)
+[Deployment Link](https://tabishnehal.github.io/func-chain-calc-app/)
 
 ## Prerequisites
 
