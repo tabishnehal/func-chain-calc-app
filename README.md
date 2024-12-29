@@ -1,50 +1,86 @@
-# React + TypeScript + Vite
+# Function Chain Calculator WebApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application that allows users to execute a chain of 5 mathematical functions, with output (y) of each function serving as the input (x) for the next.
 
-Currently, two official plugins are available:
+Here is the deployment link for same:
+[Deployment Link](link)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prerequisites
 
-## Expanding the ESLint configuration
+Before you begin, ensure you have the following installed on your machine:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Node.js** (version 14 or higher)
+- **Git**
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Clone the Repository
+
+To clone the repository, run the following command in your terminal.
+
+```sh
+git clone https://github.com/tabishnehal/func-chain-calc-app.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Navigate to the Project Directory
+
+Change into the project directory using the cd command.
+
+```
+cd func-chain-calc-app
+```
+
+### Install Dependencies
+
+Install the required dependencies using npm. This will download all the necessary packages listed in the package.json file.
+
+```
+npm install
+```
+
+### Run the Development Server
+
+Start the development server to run your React application. This will launch the app and you can view it in your browser.
+
+```
+npm run dev
+```
+
+### Open the Application in Your Browser
+
+Once the development server is running, open your browser and navigate to the URL provided in the terminal output, typically http://localhost:5173.
+
+## Add another Function
+
+If you want to add another function such as `x/2 - x + 1`, then you can do followings:
+
+- In `src/components/FunctionChain.tsx` file:
+  - add an element `{ id: 6, equation: "x/2 - x + 1", isValid: true },` before last element to `functions` array.
+  - add an element `useRef<HTMLDivElement>(null)` to `nodeRefs` array.
+  - add an element `6` before last element to `functionExecutionOrder` array.
+
+The resultant arrays will be as follows in execution order of `[1, 2, 4, 5, 6, 3]`:
 
 ```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+const [functions, setFunctions] = useState<FunctionData[]>([
+    { id: 1, equation: "x^2", isValid: true },
+    { id: 2, equation: "2*x+4", isValid: true },
+    { id: 4, equation: "x-2", isValid: true },
+    { id: 5, equation: "x/2", isValid: true },
+    { id: 6, equation: "x/2 - x + 1", isValid: true },
+    { id: 3, equation: "x^2+20", isValid: true },
+  ]);
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+  const nodeRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
+
+  const functionExecutionOrder: number[] = [1, 2, 4, 5, 6, 3];
 ```
