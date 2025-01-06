@@ -72,8 +72,8 @@ const FunctionCard = ({
           input
         </div>
         <div className="flex justify-between items-end h-[12px] text-[#585757] font-medium text-xs">
-          <ConnectionNode className="mr-1 output" />
           output
+          <ConnectionNode className="ml-1 output" />
         </div>
       </div>
     </div>
